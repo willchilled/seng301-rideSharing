@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import model.User;
 
 /**
  * Class for controlling the Login screen
@@ -20,6 +21,14 @@ public class LoginController {
     @FXML
     public void login() {
         mainController.loginScreen.setVisible(false);
+        mainController.homeScreen.setVisible(true);
+
+        //Create a dummy user for this session
+        mainController.setUser(new User("awesomewilly",
+                "password",
+                "William",
+                "Muir",
+                20));
     }
 
     @FXML

@@ -10,7 +10,7 @@ import java.util.Set;
 class Trip {
 
     private Route route;
-    private Car car;
+    private Vehicle car;
     private User driver;
     private Set<Day> days;
     private Boolean repeats;
@@ -34,13 +34,13 @@ class Trip {
      * Constructor for making a trip that does not repeat, although it may happen on different days for a single week
      * @param route The route that this trip will be taking
      * @param driver The driver of this route
-     * @param car The car used on this trip
+     * @param vehicle The vehicle used on this trip
      * @param days The days in which this trip will happen
      */
-    Trip(Route route, User driver, Car car, Set<Day> days) {
+    Trip(Route route, User driver, Vehicle vehicle, Set<Day> days) {
         this.route = route;
         this.driver = driver;
-        this.car = car;
+        this.car = vehicle;
         this.days = days;
         this.repeats = false;
 
@@ -51,14 +51,14 @@ class Trip {
      * Constructor for making a trip that repeats
      * @param route The route that this trip will be taking
      * @param driver The driver of this route
-     * @param car The car used on this trip
+     * @param vehicle The vehicle used on this trip
      * @param days The days in which this trip will happen AND repeat
      * @param expiryDate The date up to which the trip will repeat on the given days
      */
-    Trip(Route route, User driver, Car car, Set<Day> days, Date expiryDate) {
+    Trip(Route route, User driver, Vehicle vehicle, Set<Day> days, Date expiryDate) {
         this.route = route;
         this.driver = driver;
-        this.car = car;
+        this.car = vehicle;
         this.days = days;
         this.expiryDate = expiryDate;
         this.repeats = true;
@@ -73,12 +73,12 @@ class Trip {
         this.route = route;
     }
 
-    public Car getCar() {
+    public Vehicle getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCar(Vehicle vehicle) {
+        this.car = vehicle;
     }
 
     public User getDriver() {

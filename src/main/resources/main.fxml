@@ -3,7 +3,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
       <AnchorPane fx:id="loginScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -14,6 +13,11 @@
       <AnchorPane fx:id="homeScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
             <fx:include fx:id="includedHomeScreen" source="homeScreen.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="profileScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <fx:include fx:id="includedProfileScreen" source="profile.fxml" />
          </children>
       </AnchorPane>
    </children>

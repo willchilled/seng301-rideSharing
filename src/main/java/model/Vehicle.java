@@ -4,11 +4,11 @@ package model;
  * A Class defining the car object that users can register with their account
  * Created by wmu16 on 29/03/17.
  */
-class Car {
+public class Vehicle {
 
     private Type type;
     private String model;
-    private String color;
+    private String colour;
     private String licensePlate;
     private Integer year;
     private Integer numPhysicalSeats;
@@ -16,13 +16,13 @@ class Car {
     /**
      * An enum defining the type of possible vehicles
      */
-    enum Type {
+    public enum Type {
         CAR,
         VAN
     }
 
 
-    Car(String licensePlate, Type type, Integer numPhysicalSeats) {
+    public Vehicle(String licensePlate, Type type, Integer numPhysicalSeats) {
         this.licensePlate = licensePlate;
         this.type = type;
         this.numPhysicalSeats = numPhysicalSeats;
@@ -45,12 +45,12 @@ class Car {
         this.model = model;
     }
 
-    public String getColor() {
-        return color;
+    public String getColour() {
+        return colour;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     public String getLicensePlate() {

@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
  * A class defining a generic user
  * Created by wmu16 on 29/03/17.
  */
-class User {
+public class User {
 
     private String username;
     private String password;
@@ -17,13 +17,16 @@ class User {
     private Image photo;
     private String bio;
 
-    User(String username, String password, String givenName, String surname, Integer age) {
+    public User(String username, String password, String givenName, String surname, Integer age) {
         this.username = username;
         this.password = password;
         this.givenName = givenName;
         this.surname = surname;
         this.age = age;
     }
+
+
+    User() {}
 
 
     public String getUsername() {

@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileController">
    <children>
       <GridPane layoutX="302.0" layoutY="171.0" prefHeight="700.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -18,7 +18,7 @@
           <RowConstraints maxHeight="609.0" minHeight="10.0" prefHeight="548.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-colour: MAROON;">
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: MAROON;">
                <children>
                   <Text fill="WHITE" layoutX="300.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UC RideShare">
                      <font>
@@ -30,14 +30,23 @@
             <GridPane GridPane.rowIndex="2">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="729.0" minWidth="10.0" prefWidth="626.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="729.0" minWidth="10.0" prefWidth="650.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-colour: TAN;">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: BEIGE;" GridPane.columnIndex="1">
+                     <children>
+                        <AnchorPane layoutX="89.0" layoutY="108.0" prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane fx:id="editVehiclesScreen" layoutX="3.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <fx:include fx:id="includedEditVehicles" source="editVehicles.fxml" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: TAN;">
                      <children>
                         <GridPane layoutX="-30.0" layoutY="93.0" prefHeight="600.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
@@ -74,7 +83,7 @@
                         <Button mnemonicParsing="false" onAction="#goToHome" text="Home" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onAction="#goBack" text="Back" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onAction="#goToLogin" text="Logout" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <font>
                               <Font size="25.0" />
                            </font>
