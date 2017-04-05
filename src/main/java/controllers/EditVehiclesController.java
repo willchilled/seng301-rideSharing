@@ -7,8 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import model.Driver;
-import model.User;
 import model.Vehicle;
 
 import java.net.URL;
