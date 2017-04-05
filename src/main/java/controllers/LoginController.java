@@ -1,27 +1,30 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 /**
- * Created by wmu16 on 2/04/17.
+ * Class for controlling the Login screen
+ * Created by wmu16 on 5/04/17.
  */
 public class LoginController {
 
-    @FXML
-    private TextField usernameField;
 
-    @FXML
-    private TextField passwordField;
+    private MainController mainController;
 
 
-    @FXML
-    public void createNewAccount() {
-        System.out.println("Creating account!");
+    void setup(MainController mainController){
+        this.mainController = mainController;
     }
+
 
     @FXML
     public void login() {
-        System.out.println("logging in: " + usernameField.getText() + " (password: " + passwordField.getText() + ")");
+        mainController.loginScreen.setVisible(false);
     }
+
+    @FXML
+    public void createNewAccount() {
+        // TODO: 5/04/17 Implement for later release
+    }
+
 }

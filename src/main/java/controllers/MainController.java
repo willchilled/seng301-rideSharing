@@ -2,25 +2,36 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Main controller for the ride share app. Controls the main screen
- * Created by William Muir on 15/03/17.
+ * Primary controller which contains all other controllers and their containers
+ * Created by wmu16 on 5/04/17.
  */
-public class MainController {
+public class MainController implements Initializable{
 
     @FXML
-    private AnchorPane paneHolder;
+    public AnchorPane loginScreen;
+    @FXML
+    private LoginController includedLoginScreenController;
 
-    public void setVista(Node node) {
-        paneHolder.getChildren().setAll(node);
+
+    @FXML
+    public AnchorPane homeScreen;
+    @FXML
+    private HomeController includedHomeScreenController;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        includedLoginScreenController.setup(this);
+        includedHomeScreenController.setup(this);
+
+        loginScreen.setVisible(true);
     }
+
 
 }
