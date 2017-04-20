@@ -5,17 +5,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
-      <AnchorPane fx:id="loginScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="loginScreen" prefHeight="700.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <fx:include fx:id="includedLoginScreen" source="login.fxml" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="homeScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="homeScreen" prefHeight="700.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <fx:include fx:id="includedHomeScreen" source="homeScreen.fxml" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="profileScreen" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="profileScreen" prefHeight="700.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <fx:include fx:id="includedProfileScreen" source="profile.fxml" />
          </children>

@@ -7,12 +7,13 @@ import java.util.TreeSet;
  * A Class defining Routes for the Ride Sharing system, also contains the inner class StopPoint for defining stop points
  * Created by wmu16 on 29/03/17.
  */
-class Route {
+public class Route {
 
+    private String identifier;
     private TreeSet<StopPoint> route = new TreeSet<>();
 
-    Route() {
-
+    public Route(String identifier) {
+        this.identifier = identifier;
     }
 
     public TreeSet<StopPoint> getRoute() {
@@ -23,14 +24,20 @@ class Route {
         this.route = route;
     }
 
+    public String getIdentifier() {
+        return identifier;
+    }
 
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 
     private class StopPoint {
 
         private String streetAddress;
         private Time stopTime;
 
-        StopPoint(String streetAddress) {
+        public StopPoint(String streetAddress) {
             this.streetAddress = streetAddress;
         }
 

@@ -14,6 +14,13 @@ public class ProfileController implements Initializable{
 
     @FXML
     public AnchorPane editVehiclesScreen;
+
+    @FXML
+    public AnchorPane myRoutesScreen;
+
+    @FXML
+    private MyRoutesController includedMyRoutesController;
+
     @FXML
     private EditVehiclesController includedEditVehiclesController;
 
@@ -22,6 +29,7 @@ public class ProfileController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        includedMyRoutesController.setup(this);
         includedEditVehiclesController.setup(this);
     }
 
@@ -60,7 +68,15 @@ public class ProfileController implements Initializable{
 
     @FXML
     public void goToEditVehicles() {
+        myRoutesScreen.setVisible(false);
         editVehiclesScreen.setVisible(true);
+    }
+
+
+    @FXML
+    public void goToMyRoutes() {
+        editVehiclesScreen.setVisible(false);
+        myRoutesScreen.setVisible(true);
     }
 
 
