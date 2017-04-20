@@ -49,17 +49,17 @@
                   <Insets left="5.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteRoute" text="Delete Route" GridPane.halignment="RIGHT">
+            <Button fx:id="removeRouteButton" disable="true" mnemonicParsing="false" onAction="#deleteRoute" text="Remove Route" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#addPoint" text="Add Point" GridPane.columnIndex="1">
+            <Button fx:id="addPointButton" disable="true" mnemonicParsing="false" onAction="#addPoint" text="Add Point" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#removePoint" text="Remove Point" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <Button fx:id="removePointButton" disable="true" mnemonicParsing="false" onAction="#removePoint" text="Remove Point" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>

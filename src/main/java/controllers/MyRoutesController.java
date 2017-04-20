@@ -2,16 +2,14 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Route;
 import model.StopPoint;
 import model.User;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -27,10 +25,19 @@ public class MyRoutesController implements Initializable {
     private TableColumn routesCol;
 
     @FXML
+    private Button removeRouteButton;
+
+    @FXML
     private TableView stopPointTable;
 
     @FXML
     private TableColumn stopPointsCol;
+
+    @FXML
+    private Button addPointButton;
+
+    @FXML
+    private Button removePointButton;
 
     private ProfileController profileController;
 
@@ -55,36 +62,57 @@ public class MyRoutesController implements Initializable {
 
         routesTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+                removeRouteButton.setDisable(false);
+                addPointButton.setDisable(false);
                 Route thisRoute = (Route) newSelection;
-                if (!thisRoute.getStopPoints().isEmpty()) {
-                    stopPointTable.getItems().setAll(thisRoute.getStopPoints());
-                }
+                stopPointTable.getItems().setAll(thisRoute.getStopPoints());
+            } else {
+                removeRouteButton.setDisable(true);
+                addPointButton.setDisable(true);
             }
         });
 
-        Route testRoute = new Route("Test Route 1");
-        StopPoint testPoint1 = new StopPoint("7 Glenfell Place");
-        StopPoint testPoint2 = new StopPoint("6 Colligan Street");
-        ArrayList<StopPoint> testPoints = new ArrayList<>();
-        testPoints.add(testPoint1);
-        testPoints.add(testPoint2);
-        testRoute.setStopPoints(testPoints);
-
-        routesTable.getItems().add(testRoute);
-
-        Route testRoute2 = new Route("Test Route 12");
-        StopPoint testPoint21 = new StopPoint("71 Glenfell Place");
-        StopPoint testPoint22 = new StopPoint("16 Colligan Street");
-        ArrayList<StopPoint> testPoints2 = new ArrayList<>();
-        testPoints2.add(testPoint21);
-        testPoints2.add(testPoint22);
-        testRoute2.setStopPoints(testPoints2);
-
-        routesTable.getItems().add(testRoute2);
+        stopPointTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                removePointButton.setDisable(false);
+            } else {
+                removePointButton.setDisable(true);
+            }
+        });
     }
 
     @FXML
     public void makeNewRoute() {
+
+        TextInputDialog dialog = new TextInputDialog("My Route 1");
+        dialog.setTitle("Make New Route");
+        dialog.setHeaderText("Enter the identifier for this new route");
+        dialog.setContentText("Route Identifier:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            String routeIdentifier = result.get();
+
+            //Check that the route identifier doesnt already exist
+            Boolean validIdentifier = true;
+            for (Route route : profileController.getMainController().getUser().getUserRoutes()) {
+                if(route.getIdentifier().equals(routeIdentifier)) {
+                    validIdentifier = false;
+                }
+            }
+            if (validIdentifier) {
+                Route thisRoute = new Route(routeIdentifier);
+                profileController.getMainController().getUser().getUserRoutes().add(thisRoute);
+                routesTable.getItems().add(thisRoute);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("That Route already exists!");
+                alert.setContentText("Please try again with a unique route name");
+
+                alert.showAndWait();
+            }
+        }
 
     }
 
@@ -97,11 +125,48 @@ public class MyRoutesController implements Initializable {
         stopPointTable.getItems().removeAll(stopPointTable.getItems());
         //Remove from model
         user.getUserRoutes().remove(thisRoute);
+        if(user.getUserRoutes().size() > 0) {
+            routesTable.getSelectionModel().selectFirst();
+        }
     }
 
     @FXML
     public void addPoint() {
 
+        User user = profileController.getMainController().getUser();
+        Route thisRoute = (Route) routesTable.getSelectionModel().getSelectedItem();
+        if(thisRoute != null) {
+            TextInputDialog dialog = new TextInputDialog("My Point 1");
+            dialog.setTitle("Make New Stop Point");
+            dialog.setHeaderText("Enter the Address for this Stop Point");
+            dialog.setContentText("Address:");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                String address = result.get();
+
+                //Check that the stopPoint address doesnt already exist
+                thisRoute = user.getUserRoutes().get(user.getUserRoutes().indexOf(thisRoute));
+                Boolean validAddress = true;
+                for (StopPoint stopPoint : thisRoute.getStopPoints()) {
+                    if (stopPoint.getStreetAddress().equals(address)) {
+                        validAddress = false;
+                    }
+                }
+                if (validAddress) {
+                    StopPoint thisStopPoint = new StopPoint(address);
+                    user.getUserRoutes().get(user.getUserRoutes().indexOf(thisRoute)).getStopPoints().add(thisStopPoint);
+                    stopPointTable.getItems().add(thisStopPoint);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("That Stop Point already exists!");
+                    alert.setContentText("Please try again with a unique address");
+
+                    alert.showAndWait();
+                }
+            }
+        }
     }
 
     @FXML
