@@ -24,7 +24,7 @@
          <children>
             <TableView fx:id="routesTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
               <columns>
-                <TableColumn prefWidth="75.0" text="Routes" />
+                <TableColumn fx:id="routesCol" prefWidth="75.0" text="Routes" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -38,7 +38,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
                <columns>
-                  <TableColumn prefWidth="75.0" text="Stop Points" />
+                  <TableColumn fx:id="stopPointsCol" prefWidth="75.0" text="Stop Points" />
                </columns>
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

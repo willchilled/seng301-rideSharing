@@ -1,7 +1,6 @@
 package model;
 
-import java.sql.Time;
-import java.util.TreeSet;
+import java.util.ArrayList;
 
 /**
  * A Class defining Routes for the Ride Sharing system, also contains the inner class StopPoint for defining stop points
@@ -10,18 +9,18 @@ import java.util.TreeSet;
 public class Route {
 
     private String identifier;
-    private TreeSet<StopPoint> route = new TreeSet<>();
+    private ArrayList<StopPoint> stopPoints = new ArrayList<>();
 
     public Route(String identifier) {
         this.identifier = identifier;
     }
 
-    public TreeSet<StopPoint> getRoute() {
-        return route;
+    public ArrayList<StopPoint> getStopPoints() {
+        return stopPoints;
     }
 
-    public void setRoute(TreeSet<StopPoint> route) {
-        this.route = route;
+    public void setStopPoints(ArrayList<StopPoint> stopPoints) {
+        this.stopPoints = stopPoints;
     }
 
     public String getIdentifier() {
@@ -30,31 +29,5 @@ public class Route {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
-    }
-
-    private class StopPoint {
-
-        private String streetAddress;
-        private Time stopTime;
-
-        public StopPoint(String streetAddress) {
-            this.streetAddress = streetAddress;
-        }
-
-        public String getStreetAddress() {
-            return streetAddress;
-        }
-
-        public void setStreetAddress(String streetAddress) {
-            this.streetAddress = streetAddress;
-        }
-
-        public Time getStopTime() {
-            return stopTime;
-        }
-
-        public void setStopTime(Time stopTime) {
-            this.stopTime = stopTime;
-        }
     }
 }

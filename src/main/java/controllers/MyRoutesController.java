@@ -1,24 +1,22 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Route;
+import model.StopPoint;
+import model.User;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Created by Computer Doctor on 4/19/2017.
+ * Class for controlling the routes editing screen
+ * Created by William Muir on 4/19/2017.
  */
 public class MyRoutesController implements Initializable {
 
@@ -26,18 +24,16 @@ public class MyRoutesController implements Initializable {
     private TableView routesTable;
 
     @FXML
+    private TableColumn routesCol;
+
+    @FXML
     private TableView stopPointTable;
 
-    //Popup FXML stuff
     @FXML
-    private TextField routeIdentifierTextField;
-
-    @FXML
-    private Text warningText;
-
-
+    private TableColumn stopPointsCol;
 
     private ProfileController profileController;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,45 +49,54 @@ public class MyRoutesController implements Initializable {
     private void initTables() {
         routesTable.setPlaceholder(new Label("No Routes added"));
         stopPointTable.setPlaceholder(new Label("No Stop Points"));
-    }
 
+        routesCol.setCellValueFactory(new PropertyValueFactory<Route,String>("identifier"));
+        stopPointsCol.setCellValueFactory(new PropertyValueFactory<StopPoint, String>("streetAddress"));
+
+        routesTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                Route thisRoute = (Route) newSelection;
+                if (!thisRoute.getStopPoints().isEmpty()) {
+                    stopPointTable.getItems().setAll(thisRoute.getStopPoints());
+                }
+            }
+        });
+
+        Route testRoute = new Route("Test Route 1");
+        StopPoint testPoint1 = new StopPoint("7 Glenfell Place");
+        StopPoint testPoint2 = new StopPoint("6 Colligan Street");
+        ArrayList<StopPoint> testPoints = new ArrayList<>();
+        testPoints.add(testPoint1);
+        testPoints.add(testPoint2);
+        testRoute.setStopPoints(testPoints);
+
+        routesTable.getItems().add(testRoute);
+
+        Route testRoute2 = new Route("Test Route 12");
+        StopPoint testPoint21 = new StopPoint("71 Glenfell Place");
+        StopPoint testPoint22 = new StopPoint("16 Colligan Street");
+        ArrayList<StopPoint> testPoints2 = new ArrayList<>();
+        testPoints2.add(testPoint21);
+        testPoints2.add(testPoint22);
+        testRoute2.setStopPoints(testPoints2);
+
+        routesTable.getItems().add(testRoute2);
+    }
 
     @FXML
     public void makeNewRoute() {
-        Stage stage;
-        Parent root = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("routeCreatorPopUp.fxml"));
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Make New Route");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(routesTable.getScene().getWindow());
-        stage.showAndWait();
-
-    }
-
-
-    @FXML
-    public void createRoute() {
-
-        String routeIdentifier = routeIdentifierTextField.getText();
-        if(routeIdentifier != null) {
-            Route thisRoute = new Route(routeIdentifierTextField.getText());
-        } else {
-            warningText.setVisible(true);
-
-        }
 
     }
 
     @FXML
     public void deleteRoute() {
-
+        User user = profileController.getMainController().getUser();
+        Route thisRoute = (Route) routesTable.getSelectionModel().getSelectedItem();
+        //Remove visual element
+        routesTable.getItems().remove(thisRoute);
+        stopPointTable.getItems().removeAll(stopPointTable.getItems());
+        //Remove from model
+        user.getUserRoutes().remove(thisRoute);
     }
 
     @FXML
@@ -101,6 +106,14 @@ public class MyRoutesController implements Initializable {
 
     @FXML
     public void removePoint() {
+        User user = profileController.getMainController().getUser();
+        StopPoint thisStopPoint = (StopPoint) stopPointTable.getSelectionModel().getSelectedItem();
+        Route thisRoute = (Route) routesTable.getSelectionModel().getSelectedItem();
+        //Remove visual element
+        stopPointTable.getItems().remove(thisStopPoint);
+        //Remove from model
+        user.getUserRoutes().get(user.getUserRoutes().indexOf(thisRoute)).getStopPoints().remove(thisStopPoint);
 
     }
+
 }

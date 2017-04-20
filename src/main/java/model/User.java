@@ -1,7 +1,8 @@
 package model;
 
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 /**
  * A class defining a generic user
@@ -16,6 +17,7 @@ public class User {
     private Integer age;
     private Image photo;
     private String bio;
+    private ArrayList<Route> userRoutes = new ArrayList<>();
 
     public User(String username, String password, String givenName, String surname, Integer age) {
         this.username = username;
@@ -24,9 +26,6 @@ public class User {
         this.surname = surname;
         this.age = age;
     }
-
-
-    User() {}
 
 
     public String getUsername() {
@@ -65,4 +64,11 @@ public class User {
         this.bio = bio;
     }
 
+    public ArrayList<Route> getUserRoutes() {
+        return userRoutes;
+    }
+
+    public void setUserRoutes(ArrayList<Route> userRoutes) {
+        this.userRoutes = userRoutes;
+    }
 }
